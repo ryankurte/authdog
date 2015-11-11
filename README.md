@@ -1,4 +1,4 @@
-node-u2flib-server
+node-u2f
 ==================
 
 Serverside U2F library for Node.js. Provides functionality for registering U2F devices and authenticate with said devices.
@@ -9,7 +9,7 @@ Installation
 ------------
 
 ```
-npm install node-u2flib-server
+npm install node-u2f
 ```
 
 
@@ -17,13 +17,13 @@ Usage
 -----
 
 ```
-var u2f = require('node-u2flib-server');
+var u2f = require('node-u2f');
 ```
 
 The u2f protocol consists of two main actions:
 
 - Registration, in which we associate a specific device with a user.
-- Authentication, in which we verify that the user is in possesion of the previously registered device.
+- Authentication, in which we verify that the user is in possession of the previously registered device.
 
 Each of these actions consist of two phases: challenge and response.
 
@@ -142,7 +142,5 @@ They are all exposed under `u2f.errors`.
 Roadmap / Development
 ---------------------
 
-- Add unit tests
-- Refactor a bit
 - Add a web server example?
 
