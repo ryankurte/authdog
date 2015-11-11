@@ -1,6 +1,6 @@
 {
   "name": "node-u2f",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Provides functionality for working with the server side aspects of the U2F protocol.",
   "main": "lib/u2f.js",
   "devDependencies": {
