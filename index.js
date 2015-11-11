@@ -5,9 +5,6 @@
 var u2f = require('./lib/u2f.js');
 var program = require('commander');
 
-var APP_ID = "http://test.emilecantin.com";
-// var APP_ID = "http://demo.yubico.com";
-
 
 program.option('-i, --app-id <string>', 'The application ID (eg.: http://foo.example.com)');
 program.command('register-start')
