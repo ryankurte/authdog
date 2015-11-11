@@ -1,34 +1,26 @@
 {
-  "name": "node-u2flib-server",
+  "name": "node-u2f",
   "version": "0.2.2",
   "description": "Provides functionality for working with the server side aspects of the U2F protocol.",
   "main": "lib/u2f.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-  },
   "devDependencies": {
     "commander": "^2.5.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/emilecantin/node-u2flib-server.git"
+    "url": "https://github.com/jacobmarshall/node-u2f.git"
   },
   "keywords": [
     "u2f",
     "server",
     "library",
-    "2-factor",
-    "FIDO"
+    "2nd-factor",
+    "fido"
   ],
   "author": "Emile Cantin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/emilecantin/node-u2flib-server/issues"
+    "url": "https://github.com/jacobmarshall/node-u2f/issues"
   },
-  "homepage": "https://github.com/emilecantin/node-u2flib-server"
+  "homepage": "https://github.com/jacobmarshall/node-u2f"
 }
