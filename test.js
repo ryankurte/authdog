@@ -40,11 +40,9 @@ describe('Node-U2F', function() {
         })
         .then(function(resp) {
 
-            response = resp;
+            result = u2f.finishRegistration(req, resp);
 
-            return u2f.finishRegistration(req, resp);
-
-        }).then(function(result) {
+            assert(typeof result.errorCode === 'undefined');
 
             keyHandle = result.keyHandle;
             publicKey = result.publicKey;
@@ -71,11 +69,9 @@ describe('Node-U2F', function() {
 
             assert(typeof resp.errorCode == 'undefined');
 
-            response = resp;
+            result =  u2f.finishAuthentication(req, resp, publicKey);
 
-            return u2f.finishAuthentication(req, resp, publicKey);
-
-        }).then(function(result) {
+            assert(typeof result.errorCode === 'undefined');
 
             done();
         }, done).catch(done);
