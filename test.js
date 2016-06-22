@@ -5,7 +5,6 @@ var VirtualToken = require('virtual-u2f');
 
 var u2f = require('./lib/u2f.js');
 
-
 describe('Node-U2F', function() {
 
     var appId = "testApp.com";
@@ -19,22 +18,22 @@ describe('Node-U2F', function() {
         keyHandle: "Ym9ndXNfMTQ2NTk3NjAyMTM3Nw"
     }];
 
-    var token = null;
-    var keyHandle = null;
-    var publicKey = null;
+    var tokens = [];
+    var tokenMeta = [];
 
-    var registeredKeys = [
-        "test-key-1",
-        "test-key-2"
+    var fakeMeta = [
+        {keyHandle: "test-key-1"},
+        {keyHandle: "test-key-2"}
     ];
 
     before(function() {
-        token = new VirtualToken();
+        tokens.push(new VirtualToken());
+        tokens.push(new VirtualToken());
     });
 
     it('Generates compliant registration requests', function() {
 
-        var req = u2f.startRegistration(appId, fakeKeys, options);
+        var req = u2f.startRegistration(appId, fakeMeta, options);
 
         // Check header
         assert.equal(req.appId, appId);
@@ -46,7 +45,8 @@ describe('Node-U2F', function() {
 
         // Check existing keys
         //assert.equal(req.registeredKeys[0].version, fakeKeys.version);
-        assert.equal(req.registeredKeys[0].keyHandle, fakeKeys[0].keyHandle);
+        assert.equal(req.registeredKeys[0].keyHandle, fakeMeta[0].keyHandle);
+        assert.equal(req.registeredKeys[1].keyHandle, fakeMeta[1].keyHandle);
 
         // Check options
         assert.equal(req.timeoutSeconds, options.timeoutSeconds);
@@ -55,9 +55,9 @@ describe('Node-U2F', function() {
 
     it('Handles registration requests', function(done) {
 
-        var req = u2f.startRegistration(appId, registeredKeys);
+        var req = u2f.startRegistration(appId, []);
 
-        token.HandleRegisterRequest(req)
+        tokens[0].HandleRegisterRequest(req)
         .then(function(resp) {
 
             var result = u2f.finishRegistration(req, resp);
@@ -67,8 +67,7 @@ describe('Node-U2F', function() {
             assert(typeof result.keyHandle !== 'undefined');
             assert(typeof result.publicKey !== 'undefined');
 
-            keyHandle = result.keyHandle;
-            publicKey = result.publicKey;
+            tokenMeta.push({keyHandle: result.keyHandle, publicKey: result.publicKey});
 
             done();
         }, done).catch(done);
@@ -76,7 +75,7 @@ describe('Node-U2F', function() {
 
     it('Generates compliant authentication requests', function() {
 
-        var req = u2f.startAuthentication(appId, [keyHandle], options);
+        var req = u2f.startAuthentication(appId, tokenMeta, options);
 
         // Check header
         assert.equal(req.appId, appId);
@@ -84,7 +83,7 @@ describe('Node-U2F', function() {
         assert(typeof req.challenge !== 'undefined');
         
         // Check key handles
-        assert.equal(req.registeredKeys[0].keyHandle, keyHandle);
+        assert.equal(req.registeredKeys[0].keyHandle, tokenMeta[0].keyHandle);
         assert.equal(req.registeredKeys[0].version, 'U2F_V2');
 
         // Check options
@@ -95,20 +94,86 @@ describe('Node-U2F', function() {
 
     it('Handles authentication requests', function(done) {
 
-        var req = u2f.startAuthentication(appId, [keyHandle]);
+        var req = u2f.startAuthentication(appId, tokenMeta);
 
-        token.HandleSignRequest(req)
+        tokens[0].HandleSignRequest(req)
         .then(function(resp) {
 
             assert(typeof resp.errorCode == 'undefined');
 
-            var result = u2f.finishAuthentication(req, resp, publicKey);
+            var result = u2f.finishAuthentication(req, resp, tokenMeta);
 
             assert(typeof result.errorCode === 'undefined');
 
             done();
         }, done).catch(done);
 
+    });
+
+    it('Handles multiple registrations', function(done) {
+
+        var req = u2f.startRegistration(appId, tokenMeta);
+
+        tokens[1].HandleRegisterRequest(req)
+        .then(function(resp) {
+
+            var result = u2f.finishRegistration(req, resp);
+
+            assert(typeof result.errorCode === 'undefined');
+
+            assert(typeof result.keyHandle !== 'undefined');
+            assert(typeof result.publicKey !== 'undefined');
+
+            tokenMeta.push({keyHandle: result.keyHandle, publicKey: result.publicKey});
+
+            done();
+        }, done).catch(done);
+    });
+
+    it('Handles authentication requests with multiple tokens', function(done) {
+
+        var req = u2f.startAuthentication(appId, tokenMeta);
+        var reqTwo = u2f.startAuthentication(appId, tokenMeta);
+
+        tokens[0].HandleSignRequest(req)
+        .then(function(resp) {
+
+            assert(typeof resp.errorCode == 'undefined');
+
+            var result = u2f.finishAuthentication(req, resp, tokenMeta);
+
+            assert(typeof result.errorCode === 'undefined');
+
+            return tokens[1].HandleSignRequest(reqTwo);
+
+        }).then(function(resp) {
+
+            assert(typeof resp.errorCode == 'undefined');
+
+            var result = u2f.finishAuthentication(reqTwo, resp, tokenMeta);
+
+            assert(typeof result.errorCode === 'undefined');
+
+            done();
+        }, done).catch(done);
+    });
+
+    it('Rejects authentication with unregistered tokens', function(done) {
+
+        var req = u2f.startAuthentication(appId, tokenMeta);
+
+        tokens[1].HandleSignRequest(req)
+        .then(function(resp) {
+
+            assert(typeof resp.errorCode == 'undefined');
+
+            var result = u2f.finishAuthentication(req, resp, [tokenMeta[0]]);
+
+            assert(typeof result.errorCode !== 'undefined');
+
+            done();
+
+        }, done).catch(done);
     });
 
 });
