@@ -158,7 +158,7 @@ describe('Node-U2F', function() {
         }, done).catch(done);
     });
 
-    it('Rejects authentication with unregistered tokens', function(done) {
+    it('Rejects authentication with unlisted tokens', function(done) {
 
         var req = u2f.startAuthentication(appId, tokenMeta);
 

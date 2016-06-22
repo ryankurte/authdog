@@ -1,6 +1,6 @@
 {
-  "name": "node-u2f",
-  "version": "0.3.0",
+  "name": "authdog",
+  "version": "0.0.1",
   "description": "Provides functionality for working with the server side aspects of the U2F protocol.",
   "main": "lib/u2f.js",
   "scripts": {
@@ -9,23 +9,29 @@
   "devDependencies": {
     "commander": "^2.5.0",
     "mocha": "^2.5.3",
-    "virtual-u2f": "0.0.8"
+    "virtual-u2f": "^0.0.8"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jacobmarshall/node-u2f.git"
+    "url": "https://github.com/ryankurte/authdog.git"
   },
   "keywords": [
     "u2f",
     "server",
     "library",
     "2nd-factor",
-    "fido"
+    "fido",
+    "auth",
+    "dog"
   ],
-  "author": "Emile Cantin",
+  "author": "Ryan Kurte",
+  "contributers": [
+    "Emile Cantin",
+    "Jacob Marshall"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jacobmarshall/node-u2f/issues"
+    "url": "https://github.com/ryankurte/authdog/issues"
   },
-  "homepage": "https://github.com/jacobmarshall/node-u2f"
+  "homepage": "https://github.com/ryankurte/authdog"
 }
