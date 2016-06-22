@@ -18,14 +18,6 @@ CLI interface is currently fairly broken.
 
 [![Dependencies](https://david-dm.org/ryankurte/authdog.svg)](https://david-dm.org/ryankurte/authdog)  
 
-The high level client interface is defined as follows:
-```
-interface u2f {
-    void register (DOMString appId, sequence<RegisterRequest> registerRequests, sequence<RegisteredKey> registeredKeys, function(RegisterResponse or Error) callback, optional unsigned long? opt_timeoutSeconds);
-    void sign (DOMString appId, DOMString challenge, sequence<RegisteredKey> registeredKeys, function(SignResponse or Error) callback, optional unsigned long? opt_timeoutSeconds);
-};
-```
-
 Installation
 ------------
 
@@ -141,6 +133,17 @@ u2f.finishAuthentication(signRequest, signResponse, deviceRegistration)
 ```
 
 For further examples, check out [test.js](./test.js).
+
+Notes
+-----
+
+The high level client interface referred to above is defined as follows:
+```
+interface u2f {
+    void register (DOMString appId, sequence<RegisterRequest> registerRequests, sequence<RegisteredKey> registeredKeys, function(RegisterResponse or Error) callback, optional unsigned long? opt_timeoutSeconds);
+    void sign (DOMString appId, DOMString challenge, sequence<RegisteredKey> registeredKeys, function(SignResponse or Error) callback, optional unsigned long? opt_timeoutSeconds);
+};
+```
 
 ------
 
