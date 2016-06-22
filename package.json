@@ -9,11 +9,11 @@
   "devDependencies": {
     "commander": "^2.5.0",
     "mocha": "^2.5.3",
-    "virtual-u2f": "^0.0.8"
+    "virtual-u2f": "^0.0.9"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryankurte/authdog.git"
+    "url": "git+https://github.com/ryankurte/authdog.git"
   },
   "keywords": [
     "u2f",
@@ -25,7 +25,7 @@
     "dog"
   ],
   "author": "Ryan Kurte",
-  "contributers": [
+  "contributors": [
     "Emile Cantin",
     "Jacob Marshall"
   ],

@@ -18,7 +18,7 @@ CLI interface is currently fairly broken.
 
 [![Dependencies](https://david-dm.org/ryankurte/authdog.svg)](https://david-dm.org/ryankurte/authdog)  
 
-The high level interface is defined as follows:
+The high level client interface is defined as follows:
 ```
 interface u2f {
     void register (DOMString appId, sequence<RegisterRequest> registerRequests, sequence<RegisteredKey> registeredKeys, function(RegisterResponse or Error) callback, optional unsigned long? opt_timeoutSeconds);
@@ -45,7 +45,7 @@ The u2f protocol consists of two main actions:
 - Registration, in which we associate specific device(s) with a user.
 - Authentication, in which we verify that the user is in possession of a previously registered device.
 
-Each of these actions consist of two phases: challenge and response.
+Each of these actions consist of two phases: challenge and response.  
 
 An application implementing U2F needs to store a set of information about tokens associated with each user account, henceforth referred to as 'token metadata' consisting of a key handle used to identify the keypair, the public key of the token, the usage count of the token, and optionally the token certificate.  
 
@@ -72,7 +72,9 @@ u2f.startRegistration(appId, existingKeys, {requestId: N, timeoutSeconds: 100})
 
 Where existingKeys is an array of token metadata for tokens already bound to the user account.  
 
-This registration request object can then be used on the client with `u2f.register(req.appId, req.registerRequests, req.registeredKeys, registerCallback, req.timeoutSeconds);`. This must be stored for use when validating the client response in the next step.
+The registration request object must be stored for use when validating the client response in the next step.  
+
+It can then be used on the client with `u2f.register(req.appId, req.registerRequests, req.registeredKeys, registerCallback, req.timeoutSeconds);`. T
 
 To finalise device registration use:
 ```
@@ -119,7 +121,8 @@ var authRequest = u2f.startAuthentication(appId, existingKeys, {requestId: N, ti
 
 Where existingKeys is an array of token metadata for viable authentication tokens (those registered to the users account).  
 
-This registration request object can then be used on the client with `u2f.sign(req.appId, req.challenge, req.registeredKeys, signatureCallback, req.timeoutSeconds);`. This must be stored for use when validating the client authentication response in the next step.
+This registration request object must be stored for use when validating the client authentication response in the next step.  
+It can then be used on the client with `u2f.sign(req.appId, req.challenge, req.registeredKeys, signatureCallback, req.timeoutSeconds);`.
 
 To finalise the authentication process call:
 ```
@@ -136,6 +139,8 @@ u2f.finishAuthentication(signRequest, signResponse, deviceRegistration)
 });
 
 ```
+
+For further examples, check out [test.js](./test.js).
 
 ------
 
