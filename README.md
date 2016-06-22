@@ -5,6 +5,17 @@ Server side U2F/FIDO library for Node.js. Provides functionality for registering
 
 Based on @jacobmarshall's fork of @emilecantin's initial [implementation](https://github.com/emilecantin/node-u2flib-server). Altered to interact with the [high level interface](https://fidoalliance.org/specs/fido-u2f-v1.0-nfc-bt-amendment-20150514/fido-u2f-javascript-api.html#high-level-javascript-api) defined by the Fido specifications, and implemented by the [Yubico reference client api](https://demo.yubico.com/js/u2f-api.js).
 
+Status
+------
+
+Module is a work in progress, functionally working but needs better input validation and testing.  
+API is also subject to change if anything is found to be missing or better layouts become apparent.  
+CLI interface is currently fairly broken.  
+
+[![Build Status](https://travis-ci.org/ryankurte/authdog.svg)](https://travis-ci.org/ryankurte/authdog)  
+
+[![Dependencies](https://david-dm.org/ryankurte/authdog.svg)](https://david-dm.org/ryankurte/authdog)  
+
 The high level interface is defined as follows:
 ```
 interface u2f {

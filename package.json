@@ -33,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/ryankurte/authdog/issues"
   },
-  "homepage": "https://github.com/ryankurte/authdog"
+  "homepage": "https://github.com/ryankurte/authdog",
+  "dependencies": {
+    "validator": "^5.4.0"
+  }
 }
