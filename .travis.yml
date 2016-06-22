@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-  - "6"
+- '6'
 script:
 - npm test
 notifications:
   email: false
+deploy:
+  provider: npm
+  email: ryankurte@gmail.com
+  api_key:
+    secure: xIPtJXKhE+y96KjzERrrrkyKB6AQl9biP/S+dz2BhBJa6brhRhBD349I9ItzK9Ko/D+I/Qi5cHsDthC25yDNT8UaRZklGilyuQGlqO9w6fFsr4B/sY3r90+pbZ2UQWhPhQaOVKebLNYHwrWcLZ8q+nh5tcae7dvu6fMVX5XTsQHaANhU3cjivErL6b66s6ncZKY09d3g6bS31VbonUS7m/3zpllHrg2QpxdsHSFQ6rCNfzGCjZEK50t4ezNG1G8imhoPKNg8fpg767PAcx6Lm/GmmYlDQtCrpHpqNcFI4Wwxl0D9klUe3NZVvmuCkKQ0MRoUTrsjWvJF70fRhcqeVkvPOyEGlNsiMDF/qY4I8ks8HHJ7QBAdBp69gzigBvUvN08X7zIT96lI9mHCQYdNCHbYLP++EsFWafCSfpwa7Z5pKJ5svXE0GqzUSYjISszZbgE8MAOTU0GGZ8pSacBXah8ztAd17Iv//MhnoP4DLi0E4J25N7HtI89RnwL2TnaSyTtEx+SJC0ahHLGzXPMyalmqAyaxwH+uLW5KxA2k/CRsKE/pwmhHrOPcUguipBDqyZ5/BTccISDwBdTyRhqpwkbj0T8POGsgztuHgmiCPMHKOqtoDY4d0deJogZKWrd/eOyB/I+5BgswNrVFXxmTabNDi+G/vBdvXBuKW3BIrb0=
+  on:
+    tags: true
+    repo: ryankurte/authdog
