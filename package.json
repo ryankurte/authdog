@@ -9,7 +9,7 @@
   "devDependencies": {
     "commander": "^2.5.0",
     "mocha": "^2.5.3",
-    "virtual-u2f": "^0.0.9"
+    "virtual-u2f": "^0.1.0"
   },
   "repository": {
     "type": "git",
