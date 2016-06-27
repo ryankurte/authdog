@@ -1,6 +1,6 @@
 {
   "name": "authdog",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Provides functionality for working with the server side aspects of the U2F protocol.",
   "main": "lib/u2f.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "devDependencies": {
     "commander": "^2.5.0",
     "mocha": "^2.5.3",
-    "virtual-u2f": "^0.1.0"
+    "virtual-u2f": "^0.1.2"
   },
   "repository": {
     "type": "git",
