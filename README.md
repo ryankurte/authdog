@@ -68,7 +68,7 @@ Where existingKeys is an array of token metadata for tokens already bound to the
 
 The registration request object must be stored for use when validating the client response in the next step.  
 
-It can then be used on the client with `u2f.register(req.appId, req.registerRequests, req.registeredKeys, registerCallback, req.timeoutSeconds);`. T
+It can then be used on the client with `u2f.register(req.appId, req.registerRequests, req.registeredKeys, registerCallback, req.timeoutSeconds);`.
 
 To finalise device registration use:
 ```
