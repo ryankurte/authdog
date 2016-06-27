@@ -7,6 +7,8 @@ Based on @jacobmarshall's fork of @emilecantin's initial [implementation](https:
 
 Rebuilt to support multiple u2f tokens, with a focus on simple integration (ie. human readable errors, solid input validation and sanitisation).  
 
+Check out a simple example at [ryankurte/authdog-example](ryankurte/authdog-example).  
+
 Status
 ------
 
