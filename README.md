@@ -16,9 +16,8 @@ Module is a work in progress, functionally working but needs better input valida
 API is also subject to change if anything is found to be missing or better layouts become apparent.  
 CLI interface is currently fairly broken.  
 
-[![Build Status](https://travis-ci.org/ryankurte/authdog.svg)](https://travis-ci.org/ryankurte/authdog)  
+[![Build Status](https://travis-ci.org/ryankurte/authdog.svg)](https://travis-ci.org/ryankurte/authdog)  [![Dependencies](https://david-dm.org/ryankurte/authdog.svg)](https://david-dm.org/ryankurte/authdog) [![NPM](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/authdog) 
 
-[![Dependencies](https://david-dm.org/ryankurte/authdog.svg)](https://david-dm.org/ryankurte/authdog)  
 
 Installation
 ------------
